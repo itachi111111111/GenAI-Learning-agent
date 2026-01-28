@@ -1,0 +1,6 @@
+crewai
+openai
+streamlit
+sentence-transformers
+faiss-cpu
+python-dotenv
