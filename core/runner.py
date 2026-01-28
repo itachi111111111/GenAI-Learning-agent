@@ -1,16 +1,14 @@
-# core/runner.py
-from core.state import crew, vector_store
+import core.state as state
 
 def run_learning_assistant(user_input: str) -> str:
-    context = vector_store.retrieve(user_input)
+    context = state.vector_store.retrieve(user_input)
 
     prompt = f"""
-    Context:
-    {context}
+Context:
+{context}
 
-    User Question:
-    {user_input}
-    """
+User Question:
+{user_input}
+"""
 
-    response = crew.kickoff(inputs={"input": prompt})
-    return response
+    return state.crew.kickoff(inputs={"input": prompt})
