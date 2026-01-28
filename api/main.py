@@ -62,3 +62,6 @@ def ask(
     })
 
     return {"response": response}
+@app.get("/")
+def health():
+    return {"status": "ok"}
