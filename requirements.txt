@@ -1,6 +1,7 @@
-crewai
-openai
-streamlit
-sentence-transformers
-faiss-cpu
+fastapi
+uvicorn
+slowapi
 python-dotenv
+requests
+openai
+crewai
