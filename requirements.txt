@@ -1,10 +1,9 @@
 fastapi
 uvicorn
+slowapi
 requests
 python-dotenv
+sentence-transformers
+pinecone
 crewai
 openai
-sentence-transformers
-pinecone-client
-slowapi
-
