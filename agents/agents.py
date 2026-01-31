@@ -1,6 +1,6 @@
 from crewai import Agent
 from langchain_openai import ChatOpenAI
-from crewai.tools import tool
+from crewai_tools import tool
 import os
 
 # Shared LLM configuration
