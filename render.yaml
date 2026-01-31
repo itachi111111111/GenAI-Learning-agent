@@ -1,7 +1,21 @@
 services:
+  # BACKEND
   - type: web
-    name: genai-learning-agent
+    name: genai-backend
     env: python
     buildCommand: pip install -r requirements.txt
-    startCommand: uvicorn api.main:app --host 0.0.0.0 --port $PORT
-    
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: API_KEY
+        sync: false  # You enter this in the dashboard
+
+  # FRONTEND
+  - type: web
+    name: genai-frontend
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: streamlit run app.py --server.port $PORT --server.address 0.0.0.0
+    envVars:
+      - key: API_URL
+        fromService: genai-backend  # Link to backend URL automatically
+        property: url

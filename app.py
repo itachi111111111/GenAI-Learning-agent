@@ -18,6 +18,8 @@ st.set_page_config(
 # ===== CONFIG =====
 API_URL = "http://127.0.0.1:8000"  # No trailing space!
 API_KEY = "super-secret-key"
+# Default to localhost for testing, but allow Cloud to override it
+API_URL = os.getenv("API_URL", "http://127.0.0.1:8000")
 
 # ===== SESSION STATE =====
 if "messages" not in st.session_state:
