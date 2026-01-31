@@ -1,25 +1,27 @@
 from fastapi import FastAPI
-import core.state as state
+from pydantic import BaseModel
+from fastapi.middleware.cors import CORSMiddleware
+from core.runner import run_learning_assistant  # ✅ correct path
 
-app = FastAPI(title="GenAI Learning Assistant API")
+app = FastAPI()
 
-@app.on_event("startup")
-def startup_event():
-    print("🔄 Startup: loading heavy components")
+# Optional: if you have frontend interaction
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
-    from crew import create_learning_crew
-    from memory.vector_store import VectorStore
+class AskRequest(BaseModel):
+    user_input: str
 
-    state.vector_store = VectorStore()
-    state.crew = create_learning_crew()
-
-    print("✅ Startup complete")
-
-@app.get("/")
-def health():
+@app.get("/health")
+async def health():
     return {"status": "ok"}
 
 @app.post("/ask")
-def ask(query: dict):
-    from core.runner import run_learning_assistant
-    return {"response": run_learning_assistant(query["user_input"])}
+async def ask(req: AskRequest):
+    output = run_learning_assistant(req.user_input)
+    return {"response": output}

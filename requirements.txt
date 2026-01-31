@@ -5,6 +5,9 @@ requests==2.32.3
 python-dotenv==1.0.0
 pydantic==2.4.2
 starlette==0.35.1
+# UI
+streamlit==1.31.1
+requests==2.32.3
 
 
 # AI / Agents
@@ -15,6 +18,7 @@ langchain-openai==0.0.2.post1
 
 # Embeddings + Vector DB (PRODUCTION SAFE)
 sentence-transformers==2.2.2
+huggingface_hub==0.14.1
 pinecone-client==2.2.4
 
 # Utils

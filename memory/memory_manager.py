@@ -7,4 +7,5 @@ def store_interaction(text: str):
 
 def retrieve_context(query: str):
     results = store.search(query)
-    return "\n".join([r.get("text", "") for r in results])
+    return "\n".join([match.metadata.get("text", "") for match in results.matches])
+
